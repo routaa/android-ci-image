@@ -4,9 +4,8 @@ ARG \
     ANDROID_COMPILE_SDK="33" \
     ANDROID_BUILD_TOOLS="33.0.2" \
     ANDROID_SDK_TOOLS="6514223"
-ENV \
-    ANDROID_HOME="/android-home" \
-    PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/
+ENV ANDROID_HOME="/android-home"
+ENV PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/
 RUN \
     apt-get --quiet update --yes && \
     apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 && \
