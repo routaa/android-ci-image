@@ -20,3 +20,4 @@ RUN \
     sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}" && \
     sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools" && \
     sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}"
+
