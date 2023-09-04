@@ -1,5 +1,4 @@
-name: Android sdk d
-ocker image
+name: Android sdk docker image
 on:
   push:
     branches: [ "main" ]
