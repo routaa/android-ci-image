@@ -6,7 +6,7 @@ ARG \
 FROM $JDK_IMAGE
 ENV \
     ANDROID_HOME="/android-home" \
-    PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/ 
+    PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/
 RUN \
     apt-get --quiet update --yes && \
     apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 && \
@@ -15,6 +15,7 @@ RUN \
     pushd $ANDROID_HOME && \
     unzip -d cmdline-tools cmdline-tools.zip && \
     popd && \
+    find $ANDROID_HOME && \
     rm -f $ANDROID_HOME/cmdline-tools.zip && \
     sdkmanager --version && \
     yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses || true
