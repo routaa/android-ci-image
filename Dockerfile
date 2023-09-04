@@ -12,7 +12,7 @@ RUN \
     apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 && \
     install -d $ANDROID_HOME && \
     wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip && \
-    unzip -d $ANDROID_HOME/cmdline-tools cmdline-tools.zip && \
+    unzip -d $ANDROID_HOME/cmdline-tools $ANDROID_HOME/cmdline-tools.zip && \
     find $ANDROID_HOME && \
     rm -f $ANDROID_HOME/cmdline-tools.zip && \
     sdkmanager --version && \
