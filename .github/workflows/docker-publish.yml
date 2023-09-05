@@ -45,7 +45,7 @@ jobs:
           context: .
           push: true
           tags: |
-            android-sdkmanager:${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}
+            ghcr.io/android-sdkmanager:${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
