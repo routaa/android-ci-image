@@ -24,6 +24,7 @@ jobs:
           - ANDROID_COMPILE_SDK: "33"
             ANDROID_BUILD_TOOLS: "33.0.2"
             ANDROID_SDK_TOOLS: "6514223"
+            ANDROID_JAVA_VERSION: "11"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -45,7 +46,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/mahdi-hosseinnion/android-sdkmanager:${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}
+            ghcr.io/mahdi-hosseinnion/android-sdkmanager:${{ matrix.ANDROID_JAVA_VERSION }}_${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

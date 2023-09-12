@@ -1,4 +1,4 @@
-ARG JDK_IMAGE="openjdk:8-jdk-slim"
+ARG JDK_IMAGE="eclipse-temurin:11-jre-alpine"
 FROM $JDK_IMAGE
 ARG \
     ANDROID_COMPILE_SDK="33" \
