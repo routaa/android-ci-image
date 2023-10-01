@@ -1,4 +1,4 @@
-ARG JDK_IMAGE="eclipse-temurin:17-jdk-jammy"
+ARG JDK_IMAGE="eclipse-temurin:8-jdk-jammy"
 FROM $JDK_IMAGE
 ARG \
     ANDROID_COMPILE_SDK="33" \
