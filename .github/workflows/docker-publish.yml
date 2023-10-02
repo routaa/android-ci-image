@@ -20,12 +20,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        jdk:
+          - "eclipse-temurin:8-jdk-jammy"
+          - "eclipse-temurin:11-jdk-jammy"
+          - "eclipse-temurin:17-jdk-jammy"
         include:
           - ANDROID_COMPILE_SDK: "33"
             ANDROID_BUILD_TOOLS: "33.0.2"
             ANDROID_SDK_TOOLS: "6514223"
             ANDROID_NDK: "21.0.6113669"
-            JDK_IMAGE: "eclipse-temurin:8-jdk-jammy"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -62,5 +65,5 @@ jobs:
             ANDROID_COMPILE_SDK: ${{ matrix.ANDROID_COMPILE_SDK }}
             ANDROID_BUILD_TOOLS: ${{ matrix.ANDROID_BUILD_TOOLS }}
             ANDROID_SDK_TOOLS: ${{ matrix.ANDROID_SDK_TOOLS }}
-            JDK_IMAGE: ${{ matrix.JDK_IMAGE }}
+            JDK_IMAGE: ${{ matrix.jdk }}
             ANDROID_NDK: ${{ matrix.ANDROID_NDK }}
