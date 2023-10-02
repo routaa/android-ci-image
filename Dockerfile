@@ -3,7 +3,9 @@ FROM $JDK_IMAGE
 ARG \
     ANDROID_COMPILE_SDK="33" \
     ANDROID_BUILD_TOOLS="33.0.2" \
-    ANDROID_SDK_TOOLS="6514223"
+    ANDROID_SDK_TOOLS="6514223" \
+    ANDROID_NDK="21.0.6113669"
+
 ENV ANDROID_HOME="/android-home"
 ENV PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/
 RUN \
@@ -19,5 +21,5 @@ RUN \
 RUN \
     sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}" && \
     sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools" && \
-    sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}"
-
+    sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}" && \
+    sdkmanager --install "ndk;${ANDROID_NDK}"
