@@ -43,9 +43,9 @@ jobs:
       - name: Generate tag name
         id: gentag
         run:
-          TAG=${{ matrix.JDK_IMAGE }}_${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}-${{ matrix.ANDROID_NDK }}
+          TAG=${{ matrix.jdk }}_${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}-${{ matrix.ANDROID_NDK }}
           TAG=$(echo $TAG | sed "s/:/_/g")
-          echo ::set-output name=TAG::$TAG
+          echo "TAG=$TAG" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         id: build-and-push
