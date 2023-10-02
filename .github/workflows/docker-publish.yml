@@ -46,7 +46,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/mahdi-hosseinnion/android-sdkmanager:${{ matrix.ANDROID_JAVA_VERSION }}_${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}-jdk
+            $REGISTRY/$IMAGE_NAME:${{ matrix.ANDROID_JAVA_VERSION }}_${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}-jdk
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
