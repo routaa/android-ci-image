@@ -1,13 +1,14 @@
 ARG JDK_IMAGE
 FROM $JDK_IMAGE
-ARG \
-    ANDROID_COMPILE_SDK \
-    ANDROID_BUILD_TOOLS \
-    ANDROID_SDK_TOOLS \
-    ANDROID_NDK
+
+ARG ANDROID_COMPILE_SDK
+ARG ANDROID_BUILD_TOOLS
+ARG ANDROID_SDK_TOOLS
+ARG ANDROID_NDK
 
 ENV ANDROID_HOME="/android-home"
 ENV PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/
+
 RUN \
     apt-get --quiet update --yes && \
     apt-get --quiet install --yes git wget tar unzip lib32stdc++6 lib32z1 && \
