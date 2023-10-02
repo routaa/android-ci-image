@@ -40,6 +40,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate tag name
+        id: gentag
+        run:
+          TAG=${{ matrix.JDK_IMAGE }}_${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}-${{ matrix.ANDROID_NDK }}
+          TAG=$(echo $TAG | sed "s/:/_/g")
+          echo ::set-output name=TAG::$TAG
+
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@v4
@@ -47,7 +54,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.JDK_IMAGE }}_${{ matrix.ANDROID_COMPILE_SDK }}_${{ matrix.ANDROID_BUILD_TOOLS }}_${{ matrix.ANDROID_SDK_TOOLS }}-${{ matrix.ANDROID_NDK }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.gentag.outputs.TAG }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
