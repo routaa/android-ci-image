@@ -11,7 +11,7 @@ ENV PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/
 
 RUN \
     apt-get --quiet update --yes && \
-    apt-get --quiet install --yes git wget tar unzip lib32stdc++6 lib32z1 && \
+    apt-get --quiet install --yes git wget tar unzip cmake lib32stdc++6 lib32z1 && \
     install -d $ANDROID_HOME && \
     wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip && \
     unzip -d $ANDROID_HOME/cmdline-tools $ANDROID_HOME/cmdline-tools.zip && \
