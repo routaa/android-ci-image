@@ -19,8 +19,8 @@ RUN \
     rm -f $ANDROID_HOME/cmdline-tools.zip && \
     sdkmanager --version && \
     yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses || true
-RUN \
-    sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}" && \
-    sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools" && \
-    sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}" && \
-    sdkmanager --install "ndk;${ANDROID_NDK}"
+
+RUN sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
+RUN sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
+RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}"
+RUN sdkmanager --install "ndk;${ANDROID_NDK}"
