@@ -13,7 +13,7 @@ env:
 
 
 jobs:
-  build:
+  buildBase:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -24,6 +24,51 @@ jobs:
           - "eclipse-temurin:8-jdk-jammy"
           - "eclipse-temurin:11-jdk-jammy"
           - "eclipse-temurin:17-jdk-jammy"
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Setup Docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate tag name
+        id: gentag
+        run: |
+          TAG="${{ matrix.jdk }}"
+          TAG=$(echo "$TAG" | sed "s/:/-/g")
+          echo $TAG
+          echo "TAG=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Build and push Docker image
+        id: build-and-push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          file: Base.Dockerfile
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.gentag.outputs.TAG  }}
+          build-args: |
+            JDK_IMAGE=${{ matrix.jdk }}
+
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    needs: [ buildBase ]
+    strategy:
+      fail-fast: false
+      matrix:
+        jdk:
+          - "eclipse-temurin-8-jdk-jammy"
+          - "eclipse-temurin-11-jdk-jammy"
+          - "eclipse-temurin-17-jdk-jammy"
         ANDROID_COMPILE_SDK:
           - "31"
           - "29"
@@ -69,5 +114,5 @@ jobs:
             ANDROID_COMPILE_SDK=${{ matrix.ANDROID_COMPILE_SDK }}
             ANDROID_BUILD_TOOLS=${{ matrix.ANDROID_BUILD_TOOLS }}
             ANDROID_SDK_TOOLS=${{ matrix.ANDROID_SDK_TOOLS }}
-            JDK_IMAGE=${{ matrix.jdk }}
+            JDK_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.jdk }}
             ANDROID_NDK=${{ matrix.ANDROID_NDK }}
