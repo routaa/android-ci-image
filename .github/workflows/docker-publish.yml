@@ -70,9 +70,11 @@ jobs:
           - "eclipse-temurin-11-jdk-jammy"
           - "eclipse-temurin-17-jdk-jammy"
         ANDROID_COMPILE_SDK:
+          - "34"
           - "31"
           - "29"
         ANDROID_BUILD_TOOLS:
+          - "34.0.0"
           - "30.0.2"
           - "30.0.3"
           - "29.0.2"
