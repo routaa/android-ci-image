@@ -66,8 +66,8 @@ jobs:
       fail-fast: false
       matrix:
         jdk:
-          - "eclipse-temurin-8-jdk-jammy"
-          - "eclipse-temurin-11-jdk-jammy"
+          # - "eclipse-temurin-8-jdk-jammy"
+          # - "eclipse-temurin-11-jdk-jammy"
           - "eclipse-temurin-17-jdk-jammy"
         ANDROID_COMPILE_SDK:
           - "34"
@@ -79,7 +79,7 @@ jobs:
           - "6514223"
         ANDROID_NDK:
           - "21.0.6113669"
-          - "21.4.7075529"
+          # - "21.4.7075529"
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
