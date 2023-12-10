@@ -97,7 +97,7 @@ jobs:
       - name: Generate tag name
         id: gentag
         run: |
-          TAG="JustASimpleTag-ssfa-"
+          TAG="JustASimpleTag-ssfa--"
           TAG=$(echo "$TAG" | sed "s/:/-/g")
           echo $TAG
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
