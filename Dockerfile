@@ -21,9 +21,6 @@ RUN \
 RUN sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
 RUN sdkmanager --install "ndk;${ANDROID_NDK}"
 RUN sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
-RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;34.0.0"
-RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;30.0.1"
-RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;30.0.2"
-RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;30.0.3"
-RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;29.0.2"
-RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;33.0.1"
+RUN \
+    IFS=';' read -r -a buildToolsArray <<< "${ANDROID_BUILD_TOOLS}" && \
+    for buildToolsVersion in ${buildToolsArray[@]}; do sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${buildToolsVersion}" ; done
