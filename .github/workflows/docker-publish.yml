@@ -97,7 +97,7 @@ jobs:
       - name: Generate tag name
         id: gentag
         run: |
-          TAG="Jdk-eclipse-temurin-8-jdk-jammy-CompileSdk-34-SdkBuildTools-34.0.0-30.0.1-30.0.2-30.0.3-29.0.2-33.0.1--Ndk-21.0.6113669-SdkToolsVersion-6514223"
+          TAG="Jdk-eclipse-temurin-8-jdk-jammy-CompileSdk-34-SdkBuildTools-34.0.0-30.0.1-30.0.2-30.0.3-29.0.2-33.0.1-Ndk-21.0.6113669-SdkToolsVersion-6514223"
           TAG=$(echo "$TAG" | sed "s/:/-/g")
           echo $TAG
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
