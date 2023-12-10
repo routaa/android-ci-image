@@ -97,7 +97,7 @@ jobs:
       - name: Generate tag name
         id: gentag
         run: |
-          TAG="${{ matrix.jdk }}-${{ matrix.ANDROID_COMPILE_SDK }}-${{ matrix.ANDROID_BUILD_TOOLS }}-${{ matrix.ANDROID_SDK_TOOLS }}-${{ matrix.ANDROID_NDK }}"
+          TAG="${{ matrix.jdk }}-${{ matrix.ANDROID_COMPILE_SDK }}-${{ matrix.ANDROID_BUILD_TOOLS }}-${{ matrix.ANDROID_SDK_TOOLS }}-${{ matrix.ANDROID_NDK }}-ninja"
           TAG=$(echo "$TAG" | sed "s/:/-/g")
           echo $TAG
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
