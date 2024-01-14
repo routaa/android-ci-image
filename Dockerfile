@@ -22,4 +22,8 @@ RUN sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
 RUN sdkmanager --install "ndk;${ANDROID_NDK}"
 RUN sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
 RUN echo $ANDROID_BUILD_TOOLS | xargs -i sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;{}"
-# RUN /bin/bash -c "IFS='-' read -r -a buildToolsArray <<< '${ANDROID_BUILD_TOOLS}' && for buildToolsVersion in ${buildToolsArray[@]}; do sdkmanager --sdk_root=${ANDROID_HOME} 'build-tools;${buildToolsVersion}' ; done"
+
+# Add bundle signer for cafe bazzar bundle signing 
+
+WORKDIR /bazzar-bundlesigner
+COPY bundlesigner-0.1.13.jar .
