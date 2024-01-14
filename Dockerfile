@@ -25,5 +25,7 @@ RUN echo $ANDROID_BUILD_TOOLS | xargs -i sdkmanager --sdk_root=${ANDROID_HOME} "
 
 # Add bundle signer for cafe bazzar bundle signing 
 
-WORKDIR /bazzar-bundlesigner
+ENV BUNDLE_SIGNER_DIR "/bazzar-bundlesigner"
+
+RUN mkdir $BUNDLE_SIGNER_DIR && cd $BUNDLE_SIGNER_DIR
 COPY bundlesigner-0.1.13.jar .
