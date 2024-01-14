@@ -21,10 +21,11 @@ jobs:
       fail-fast: false
     steps:
       - name: Download bazzar bundle signer
-        run: wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.13/bundlesigner-0.1.13.jar
+        run: wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.12/bundlesigner-0.1.12.jar
+        # run: wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.13/bundlesigner-0.1.13.jar
       - name: Check bundler signer md5 hash
         run: | 
-          [ $(md5sum bundlesigner-0.1.13.jar | awk '{print $1}') == cb7d17904d680f1ae4c90de9827af6e3 ] && echo -e "MD5 checksum verfied" || { echo "Checksum failed" && exit 1;}
+          [ $(md5sum bundlesigner-0.1.13.jar | awk '{print $1}') == cb7d17904d680f1ae4c90de9827af6e2 ] && echo -e "MD5 checksum verfied" || { echo "Checksum failed" && exit 1;}
   buildBase:
     runs-on: ubuntu-latest
     permissions:
