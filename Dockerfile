@@ -13,7 +13,9 @@ ENV BUNDLE_SINGER_1_13_MD5_HASH "cb7d17904d680f1ae4c90de9827af6e2"
 
 RUN mkdir $BUNDLE_SIGNER_DIR && cd $BUNDLE_SIGNER_DIR
 RUN wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.13/bundlesigner-0.1.13.jar
+RUN md5sum bundlesigner-0.1.13.jar
 RUN [ $(md5sum bundlesigner-0.1.13.jar | awk '{print $1}') == $BUNDLE_SINGER_1_13_MD5_HASH ] && echo -e "MD5 checksum verfied" || { echo "Checksum failed" && exit 1;}
+RUN cd ..
 
 # Installing the required sdk
 ENV ANDROID_HOME="/android-home"
