@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
+    needs: [ bazzarBundleSigner ]
     strategy:
       fail-fast: false
       matrix:
