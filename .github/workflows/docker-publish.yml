@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Download bazzar bundle signer
-        run: wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.12/bundlesigner-0.1.12.jar && ls -la
+        run: wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.12/bundlesigner-0.1.12.jar && pwd && ls -la
         # run: wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.13/bundlesigner-0.1.13.jar
       - name: Check bundler signer md5 hash
         run: | 
