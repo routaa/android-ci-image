@@ -99,7 +99,7 @@ jobs:
         run: |
           TAG="Jdk-${{ matrix.jdk }}-CompileSdk-${{ matrix.ANDROID_COMPILE_SDK }}-SdkBuildTools-Ndk-${{ matrix.ANDROID_NDK }}-AndroidBuildToolVersions-${{ matrix.ANDROID_BUILD_TOOLS }}-${{ matrix.ANDROID_SDK_TOOLS }}-bundleSignerVersion-0-1-13"
           TAG=$(echo "$TAG" | sed "s/:/-/g")
-          TAG=$(echo "$TAG" | sed "s/./-/g")
+          TAG=$(echo "$TAG" | sed "s/[.]/-/g")
           echo $TAG
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
 
