@@ -12,8 +12,7 @@ ENV BUNDLE_SIGNER_DIR "/bazzar-bundlesigner"
 
 RUN mkdir $BUNDLE_SIGNER_DIR && cd $BUNDLE_SIGNER_DIR
 RUN wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.13/bundlesigner-0.1.13.jar
-RUN md5sum bundlesigner-0.1.13.jar
-RUN { [ $(md5sum bundlesigner-0.1.13.jar | awk '{print $1}') == cb7d17904d680f1ae4c90de9827af6e2 ] && echo -e "MD5 checksum verfied" } || { echo "Checksum failed" && exit 1;}
+RUN if [ $(md5sum bundlesigner-0.1.13.jar | awk '{print $1}') == cb7d17904d680f1ae4c90de9827af6e2 ]; then echo "MD5 checksum verfied"; else echo "Checksum failed" ; exit 1; fi
 RUN cd ..
 
 # Installing the required sdk
