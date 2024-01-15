@@ -5,16 +5,15 @@ ARG ANDROID_COMPILE_SDK
 ARG ANDROID_BUILD_TOOLS
 ARG ANDROID_SDK_TOOLS
 ARG ANDROID_NDK
+ARG BUNDLE_SIGNER_VERSION
 
 # Add bundle signer for cafe bazzar bundle signing 
 
 ENV BUNDLE_SIGNER_DIR "/bazzar-bundlesigner"
 
 RUN mkdir $BUNDLE_SIGNER_DIR && cd $BUNDLE_SIGNER_DIR
-RUN wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.13/bundlesigner-0.1.13.jar
-RUN md5sum bundlesigner-0.1.13.jar
-RUN md5sum bundlesigner-0.1.13.jar | awk '{print $1}'
-RUN if [ $(md5sum bundlesigner-0.1.13.jar | awk '{print $1}') = cb7d17904d680f1ae4c90de9827af6e2 ]; then echo "MD5 checksum verfied"; else echo "Checksum failed" ; exit 1; fi
+RUN wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.12/bundlesigner-0.1.12.jar
+RUN if [ $(md5sum bundlesigner-0.1.12.jar | awk '{print $1}') = cb7d17904d680f1ae4c90de9827af6e2 ]; then echo "MD5 checksum verfied"; else echo "Checksum failed" ; exit 1; fi
 RUN cd ..
 
 # Installing the required sdk
