@@ -12,8 +12,8 @@ ARG BUNDLE_SIGNER_VERSION
 ENV BUNDLE_SIGNER_DIR "/bazzar-bundlesigner"
 
 RUN mkdir $BUNDLE_SIGNER_DIR && cd $BUNDLE_SIGNER_DIR
-RUN wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.12/bundlesigner-0.1.12.jar
-RUN if [ $(md5sum bundlesigner-0.1.12.jar | awk '{print $1}') = cb7d17904d680f1ae4c90de9827af6e2 ]; then echo "MD5 checksum verfied"; else echo "Checksum failed" ; exit 1; fi
+RUN wget https://github.com/cafebazaar/bundle-signer/releases/download/v0.1.13/bundlesigner-0.1.13.jar
+RUN if [ $(md5sum bundlesigner-0.1.13.jar | awk '{print $1}') = cb7d17904d680f1ae4c90de9827af6e2 ]; then echo "MD5 checksum verfied"; else echo "Checksum failed" ; exit 1; fi
 RUN cd ..
 
 # Installing the required sdk
@@ -32,4 +32,4 @@ RUN \
 RUN sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
 RUN sdkmanager --install "ndk;${ANDROID_NDK}"
 RUN sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
-RUN echo $ANDROID_BUILD_TOOLS | xargs -i sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;{}"
+RUN ["/bin/bash", "-c", "IFS='_' read -ra SDKS <<< \"$ANDROID_BUILD_TOOLS\" && for sdk in \"${SDKS[@]}\"; do echo \"Installing android build tool version $i\" && sdkmanager --sdk_root=${ANDROID_HOME} \"build-tools;$sdk\"; done"]
