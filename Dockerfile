@@ -32,4 +32,4 @@ RUN \
 RUN sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
 RUN sdkmanager --install "ndk;${ANDROID_NDK}"
 RUN sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
-RUN ["/bin/bash", "-c", "IFS='_' read -ra SDKS <<< \"$ANDROID_BUILD_TOOLS\" && for sdk in \"${SDKS[@]}\"; do echo \"Installing android build tool version $i\" && sdkmanager --sdk_root=${ANDROID_HOME} \"build-tools;$sdk\"; done"]
+RUN ["/bin/bash", "-c", "IFS='_' read -ra SDKS <<< \"$ANDROID_BUILD_TOOLS\" && for sdk in \"${SDKS[@]}\"; do echo \"Installing android build tool version $sdk\" && sdkmanager --sdk_root=${ANDROID_HOME} \"build-tools;$sdk\"; done"]
