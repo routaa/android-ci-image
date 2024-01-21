@@ -103,7 +103,7 @@ jobs:
             first_two_chars="${version:0:2}"
             buildToolsAbbr+="${first_two_chars}"
           done
-          TAG="Jdk-${{ matrix.jdk }}-CompileSdk-${{ matrix.ANDROID_COMPILE_SDK }}-SdkBuildTools-Ndk-${{ matrix.ANDROID_NDK }}-AndroidBuildToolVersions-${{ buildToolsAbbr }}-${{ matrix.ANDROID_SDK_TOOLS }}"
+          TAG="Jdk-${{ matrix.jdk }}-CompileSdk-${{ matrix.ANDROID_COMPILE_SDK }}-SdkBuildTools-Ndk-${{ matrix.ANDROID_NDK }}-AndroidBuildToolVersions-$buildToolsAbbr-${{ matrix.ANDROID_SDK_TOOLS }}"
           TAG=$(echo "$TAG" | sed "s/:/-/g")
           TAG=$(echo "$TAG" | sed "s/[.]/_/g")
           echo $TAG
