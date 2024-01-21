@@ -101,11 +101,9 @@ jobs:
           buildToolsAbbr=""
           for version in "${array[@]}"; do
             first_two_chars="${version:0:2}"
-            echo $first_two_chars
             buildToolsAbbr+="${first_two_chars}"
           done
-          echo "abbrivation is $buildToolsAbbr"
-          TAG="Jdk-${{ matrix.jdk }}-CompileSdk-${{ matrix.ANDROID_COMPILE_SDK }}-SdkBuildTools-Ndk-${{ matrix.ANDROID_NDK }}-AndroidBuildTool-$buildToolsAbbr-${{ matrix.ANDROID_SDK_TOOLS }}"
+          TAG="Jdk-${{ matrix.jdk }}-CompileSdk-${{ matrix.ANDROID_COMPILE_SDK }}-SdkBuildTools-Ndk-${{ matrix.ANDROID_NDK }}-AndroidBuildTool-$buildToolsAbbr-sdkTool${{ matrix.ANDROID_SDK_TOOLS }}"
           TAG=$(echo "$TAG" | sed "s/:/-/g")
           TAG=$(echo "$TAG" | sed "s/[.]/_/g")
           echo $TAG
