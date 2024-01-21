@@ -97,7 +97,7 @@ jobs:
       - name: Generate tag name
         id: gentag
         run: |
-          IFS='_' read -ra array <<< "$ANDROID_BUILD_TOOLS"
+          IFS='_' read -ra array <<< "${{ matrix.ANDROID_BUILD_TOOLS }}"
           buildToolsAbbr=""
           for version in "${array[@]}"; do
             first_two_chars="${version:0:2}"
