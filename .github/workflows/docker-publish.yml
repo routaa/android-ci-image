@@ -104,7 +104,7 @@ jobs:
             buildToolsAbbr+="${first_two_chars}"
           done
           TAG="Jdk-${{ matrix.jdk }}-CompileSdk-${{ matrix.ANDROID_COMPILE_SDK }}-SdkBuildTools-Ndk-${{ matrix.ANDROID_NDK }}-AndroidBuildTool-$buildToolsAbbr-sdkTool${{ matrix.ANDROID_SDK_TOOLS }}"
-          TAG="$TAG#${{ github.run_number }}"
+          TAG="$TAG-n-${{ github.run_number }}"
           TAG=$(echo "$TAG" | sed "s/:/-/g")
           TAG=$(echo "$TAG" | sed "s/[.]/_/g")
           echo $TAG
